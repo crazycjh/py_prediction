@@ -1,0 +1,1458 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<!-- Styles -->
+<style>
+	#chartdiv {
+	  width: 100%;
+	  height: 500px;
+	  
+	}
+	#chart2div {
+	  width: 100%;
+	  height: 500px;
+	  
+	}
+
+	#chartdiv_pie {
+	width: 100%;
+	height: 500px;
+	}
+	#chartdiv_week {
+	width: 100%;
+	height: 500px;
+	}
+
+	.divclass {
+		margin-top:15px;
+		margin-bottom:-10px;
+	}
+	</style>
+	
+	<!-- Resources -->
+	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+	<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+	<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+	<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type=text/javascript>
+
+
+    </script>
+<html>
+	<head>
+		<title>Photon by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/css/main.css" />
+		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<div class="inner">
+					
+					<h1><strong>西班牙</strong>供電需求預測</h1>
+					<p>預測模型結合時間週期以提升預測結果</p>
+					<ul class="actions special">
+						<li><a href="#one" class="button scrolly">Discover</a></li>
+					</ul>
+				</div>
+			</section>
+			<div style="text-align:center;">
+				<iframe width="1024" height="768" src="https://docs.google.com/presentation/d/1I_Ospw77VU-7dRcVJog__MuowfyxjLtl/edit?usp=sharing&ouid=109474413474149601243&rtpof=true&sd=true" 
+				title="第四組專題" 
+				frameborder="0" 
+				allow="accelerometer
+				; clipboard-write; 
+				encrypted-media; gyroscope; 
+				picture-in-picture" allowfullscreen></iframe>
+			</div>
+		<!-- One -->
+			<section id="one" class="main style1">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-6 col-12-medium">
+							<header class="major">
+								<h2>專題介紹</h2>
+							</header>
+							<p>本次的研究主題為西班牙的供電供需系統，西班牙的電廠屬於完全私營化的電廠結構，與我國由國營事業訂定電價不同，西班牙的電價由市場機制決定，私人公司進行能源生產後，再從高壓塔台送到社區與家家戶戶進行收費。收費並非由能源生產商直接跟用戶收費，而是透過營運商，營運商的總數在數十家不等，營運商會與能源公司進行市場競標，拍賣每小時進行一次，所以我們的資料是以每小時為單位。</p>
+							<h3>研究動機</h3>
+							<p>由於西班牙的電價由市場機制決定，影響電價的因素可能
+								包含原物料價格、天氣、電力負載需求等等，而這些因素
+								都有現有的資料可以取得，這就讓此專題有了使用機器學
+								習進行預測的空間。
+			  			</p>
+						</div>
+						<div class="col-6 col-12-medium imp-medium">
+							<span class="image fit"><img src="static/pic01.jpg" alt="" /></span>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="one" class="main style1">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-6 col-12-medium">
+				<!-- HTML -->
+						<div style="text-align:center;">
+							<h3>發電結構</h3>
+						</div>
+						<div id="chartdiv_pie"></div>
+						</div>
+						<div class="col-6 col-12-medium">
+							<!-- HTML -->
+							<div style="text-align:center;">
+								<h3>用電週期</h3>
+							</div>
+							<div id="chartdiv_week"></div>	
+						</div>
+					
+					</div>>	
+
+				</div>>
+			</section>>
+			<div style="text-align:center;">
+				<h3>     機器學習流程</h3>
+			</div>
+				<span class="image fit"><img src="static/process.png" alt="" /></span>
+			
+		<!-- Two -->
+			<section id="two" class="main style2">
+				<div class="container">
+					<div class="row gtr-150">
+						<div class="col-6 col-12-medium">
+							<div style="text-align:center;">
+								<h3>電價預測</h3>
+							</div>
+							<div id="chart2div"></div>
+							<!-- <ul class="major-icons">
+								<li><span class="icon solid style1 major fa-code"></span></li>
+								<li><span class="icon solid style2 major fa-bolt"></span></li>
+								<li><span class="icon solid style3 major fa-camera-retro"></span></li>
+								<li><span class="icon solid style4 major fa-cog"></span></li>
+								<li><span class="icon solid style5 major fa-desktop"></span></li>
+								<li><span class="icon solid style6 major fa-calendar"></span></li>
+							</ul> -->
+						</div>
+						<div class="col-6 col-12-medium">
+							<div style="text-align:center;">
+								<h3>負載預測</h3>
+							</div>
+							<div id="chartdiv"></div>
+							
+							<!--
+							<header class="major">
+								<h2>特徵選取-時間週期/Kmeans分群</h2>
+							</header>
+							//<p>透過觀察時間週期，找出工作日的Lunch Break與工作時間的用電有明顯的差異，週末的用電也與週間有著顯著不同。同時再將數個年度的用電曲線重疊觀察，發現都有著高度相關。</p>
+							
+								<span class="image fit"><img src="static/時間週期.png" alt="" /><img src="static/年.png" alt="" /></span>
+								<p>利用Kmeans分群增加新欄位</p>-->
+						</div>
+							
+						</div>
+					</div>
+
+			</section>
+			<section id="one" class="main style1">
+				<div id="pred"	 class="container">
+					<div  class="row gtr-150">
+						<div class="col-6 col-12-medium">
+
+
+								<!--<form  action=>
+
+									<section id="one" class="mainstyle1">
+										<!--<div class="container">-->
+											<!--<h3>
+												預測模型測試
+											</h3>
+											<div class="row gtr-150">
+												<div class="col-6 col-12-medium">
+													<section id="one" class="mainstyle1">
+														<select name="weather" >
+															<option value="clear" selected>晴天</option>
+															<option value="rain">雨天</option>
+															<option value="fog">霧</option>
+															<option value="haze">霾</option>
+															<option value="clouds">陰天</option>
+														</select>
+
+														<div class="divclass">選擇礦產價格</div>
+														<div>煤礦:</div>
+														<!--<input type="text" name ="coal" class="form-control" id="formGroupExampleInput" placeholder="請輸入價格，預設值75.15" length="50">-->
+													<!--	<select name="coal"  >
+															<option value="40">40 USD/T</option>
+															<option value="50" selected>50 USD/T</option>
+															<option value="60">60 USD/T</option>
+															<option value="70">70 USD/T</option>
+															<option value="80">80 USD/T</option>
+															<option value="90">90 USD/T</option>
+														</select>
+														<div>天然氣:</div>
+														<!--<input type="text" name ="gas" class="form-control" id="formGroupExampleInput" placeholder="請輸入價格，預設值2.94" length="50">-->
+
+														<!--<select name="gas" >
+															<option value="1" selected>1 USD/MBTU</option>
+															<option value="2">2 USD/MBTU</option>
+															<option value="3">3 USD/MBTU</option>
+															<option value="4">4 USD/MBTU</option>
+															<option value="5">5 USD/MBTU</option>
+															<option value="6">6 USD/MBTU</option>
+
+														</select>
+														<div>石油:</div>
+														<!--<input type="text" name="oil" class="form-control" id="formGroupExampleInput" placeholder="請輸入價格，預設值15.5">-->
+														<!--<select name="oil" >
+															<option value="11" selected>11 USD/Bbl</option>
+															<option value="12">12 USD/Bbl</option>
+															<option value="13">13 USD/Bbl</option>
+															<option value="14">14 USD/Bbl</option>
+															<option value="15">15 USD/Bbl</option>
+															<option value="16">16 USD/Bbl</option>
+
+														</select>
+													</section>
+
+													<section id="one" class="mainstyle1">
+														<div>生質燃料:</div>
+														<!--<input type="text" name="bio" class="form-control" id="formGroupExampleInput" placeholder="請輸入價格，預設值27.55">-->
+														<!--<select name="bio" >
+															<option value="24">24 USD/Lbs</option>
+															<option value="25" selected>25 USD/Lbs</option>
+															<option value="26">26 USD/Lbs</option>
+															<option value="27">27 USD/Lbs</option>
+															<option value="28">28 USD/Lbs</option>
+
+														<!--</select>
+														<div>鈾礦:</div>
+														<!--<input type="text" name="u235" class="form-control" id="formGroupExampleInput" placeholder="請輸入價格，預設值28.8">-->
+														<!--<select name="u235" >
+															<option value="24">24 USD/Lbs</option>
+															<option value="25">25 USD/Lbs</option>
+															<option value="26" selected>26 USD/Lbs</option>
+															<option value="27">27 USD/Lbs</option>
+															<option value="28">28 USD/Lbs</option>
+															<option value="29">29 USD/Lbs</option>
+
+														</select>
+														<div>時段:</div>
+														<select name="hours" >
+															<option value="0">0點</option>
+															<option value="1">1點</option>
+															<option value="2">2點</option>
+															<option value="3">3點</option>
+															<option value="4">4點</option>
+															<option value="5">5點</option>
+															<option value="6" selected>6點</option>
+															<option value="7" >7點</option>
+															<option value="8">8點</option>
+															<option value="9">9點</option>
+															<option value="10">10點</option>
+															<option value="11">11點</option>
+															<option value="12">12點</option>
+															<option value="13">13點</option>
+															<option value="14">14點</option>
+															<option value="15">15點</option>
+															<option value="16">16點</option>
+															<option value="17">17點</option>
+															<option value="18">18點</option>
+															<option value="19">19點</option>
+															<option value="20">20點</option>
+															<option value="21">21點</option>
+															<option value="22">22點</option>
+															<option value="23">23點</option>
+
+														</select>
+													</section> -->
+													<!--<div>-----------------------</div>
+
+
+
+												</div>
+											</div>
+										<!--</div>-->
+								<!--	</section>
+								</form>-->
+
+
+
+
+							<table>
+								<tr>
+									<td>
+
+										<div style="text-align:center">天氣:</div>
+										</td>
+										<td>
+										<div style="text-align:center" >時段:</div>
+
+									</td>
+								</tr>
+
+								<tr>
+
+									<td>
+
+														<select name="weather" >
+															<option value="clear" selected>晴天</option>
+															<option value="rain">雨天</option>
+															<option value="fog">霧</option>
+															<option value="haze">霾</option>
+															<option value="clouds">陰天</option>
+														</select>
+									</td>
+									<td>
+
+														<select name="hours" >
+															<option value="0">0點</option>
+															<option value="1">1點</option>
+															<option value="2">2點</option>
+															<option value="3">3點</option>
+															<option value="4">4點</option>
+															<option value="5">5點</option>
+															<option value="6" selected>6點</option>
+															<option value="7" >7點</option>
+															<option value="8">8點</option>
+															<option value="9">9點</option>
+															<option value="10">10點</option>
+															<option value="11">11點</option>
+															<option value="12">12點</option>
+															<option value="13">13點</option>
+															<option value="14">14點</option>
+															<option value="15">15點</option>
+															<option value="16">16點</option>
+															<option value="17">17點</option>
+															<option value="18">18點</option>
+															<option value="19">19點</option>
+															<option value="20">20點</option>
+															<option value="21">21點</option>
+															<option value="22">22點</option>
+															<option value="23">23點</option>
+
+														</select>
+									</td>
+
+								</tr>
+								<tr>
+									<td>
+
+										<div style="text-align:center">煤炭:</div>
+										</td>
+										<td>
+										<div style="text-align:center" >天然氣:</div>
+										</td>
+
+								</tr>
+
+								<tr>
+									<td>
+										<select name="coal">
+															<option value="40">40 USD/T</option>
+															<option value="50" selected>50 USD/T</option>
+															<option value="60">60 USD/T</option>
+															<option value="70">70 USD/T</option>
+															<option value="80">80 USD/T</option>
+															<option value="90">90 USD/T</option>
+														</select>
+									</td>
+									<td>
+										<select name="gas" >
+															<option value="1" selected>1 USD/MBTU</option>
+															<option value="2">2 USD/MBTU</option>
+															<option value="3">3 USD/MBTU</option>
+															<option value="4">4 USD/MBTU</option>
+															<option value="5">5 USD/MBTU</option>
+															<option value="6">6 USD/MBTU</option>
+
+														</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+
+										<div style="text-align:center">石油:</div>
+										</td>
+										<td>
+										<div style="text-align:center" >生質燃料:</div>
+										</td>
+
+								</tr>
+								<tr>
+									<td>
+										<select name="oil" >
+															<option value="11" selected>11 USD/Bbl</option>
+															<option value="12">12 USD/Bbl</option>
+															<option value="13">13 USD/Bbl</option>
+															<option value="14">14 USD/Bbl</option>
+															<option value="15">15 USD/Bbl</option>
+															<option value="16">16 USD/Bbl</option>
+
+														</select>
+									</td>
+									<td>
+										<select name="bio" >
+															<option value="23">23 USD/Lbs</option>
+															<option value="24">24 USD/Lbs</option>
+															<option value="25" selected>25 USD/Lbs</option>
+															<option value="26">26 USD/Lbs</option>
+															<option value="27">27 USD/Lbs</option>
+															<option value="28">28 USD/Lbs</option>
+															<option value="29">29 USD/Lbs</option>
+														</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+
+										<div style="text-align:center">鈾礦:</div>
+										</td>
+
+
+								</tr>
+								<tr>
+									<td>
+										<select name="u235" >
+															<option value="24">24 USD/Lbs</option>
+															<option value="25">25 USD/Lbs</option>
+															<option value="26" selected>26 USD/Lbs</option>
+															<option value="27">27 USD/Lbs</option>
+															<option value="28">28 USD/Lbs</option>
+															<option value="29">29 USD/Lbs</option>
+
+														</select>
+									</td>
+									<td>
+										<button type="submit" href="#" id=ppred >計算</button>
+									</td>
+								</tr>
+
+
+						</table>
+
+						</div>
+						<div class="col-6 col-12-medium">
+							<br>
+							<h3>
+								預估電價：<span id="result">?</span> €/MWH
+								<br>
+								預估負載：<span id="load">?</span> MW
+							</h3>
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- Three -->
+			<section id="three" class="main style1 special">
+				<div class="container">
+					<header class="major">
+						<h2>Our Team</h2>
+					</header>
+					
+					<div class="row gtr-150">
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/andy.jpg" alt="" /></span>
+							<h3><陳俊豪Andy></h3>
+							<p><strong>-資訊工程研究所-</strong><br>
+								資料清洗<br>
+								模型預測<br>
+								網頁製作</p>
+							
+							
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/龍_1.jpg" alt="" /></span>
+							<h3><謝孟龍Shalom></h3>
+							<p><strong>-工業工程與管理系-</strong><br>
+								資料清洗<br>
+								模型測試</p>
+							
+							
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/蔣.jpg" alt="" /></span>
+							<h3><蔣守銘Manuel></h3>
+							<p><strong>-環境工程技師-</strong><br>
+								資料清洗<br>
+								模型測試<br>
+								</p>
+							
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/聰.jpg" alt="" /></span>
+							<h3><蔡一聰Mark></h3>
+							<p><strong>-冷凍空調與能源系-</strong><br>
+								資料清洗<br>
+								模型測試<br>
+								簡報編排撰寫.</p>
+							
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/sandy.jpg" alt="" /></span>
+							<h3><許菁怡Sandy></h3>
+							<p><strong>-生物資訊學系-</strong><br>
+								資料搜集<br>
+								資料彙整
+								</p>
+							
+							
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/鍾.jpg" alt="" /></span>
+							<h3><鍾慶富Frank></h3>
+							<p><strong>影像處理/產品規劃</strong><br>
+								資料清洗<br>
+								模型測試
+								</p>
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/nai_1.jpg" alt="" /></span>
+							<h3><鄭乃瑋Ray></h3>
+							<p><strong>-國際貿易與
+								經營資訊學系
+								-</strong><br>
+								資料蒐集<br>
+								資料電子檔統整
+								</p>
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="static/austin_1.jpg" alt="" /></span>
+							<h3><楊謦鶴Austin></h3>
+							<p><strong>-化學工程研究所
+								-</strong><br>
+								資料/策略擬定<br>
+								簡報編排
+								</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Four -->
+
+
+		<!-- Five -->
+		<!--
+			<section id="five" class="main style1">
+				<div class="container">
+					<header class="major special">
+						<h2>Elements</h2>
+					</header>
+
+					<section>
+						<h4>Text</h4>
+						<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+						This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+						This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+						<hr />
+						<header>
+							<h4>Heading with a Subtitle</h4>
+							<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+						</header>
+						<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+						<header>
+							<h5>Heading with a Subtitle</h5>
+							<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+						</header>
+						<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+						<hr />
+						<h2>Heading Level 2</h2>
+						<h3>Heading Level 3</h3>
+						<h4>Heading Level 4</h4>
+						<h5>Heading Level 5</h5>
+						<h6>Heading Level 6</h6>
+						<hr />
+						<h5>Blockquote</h5>
+						<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+						<h5>Preformatted</h5>
+						<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+print 'Iteration ' + i;
+deck.shuffle();
+i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+					</section>
+
+					<section>
+						<h4>Lists</h4>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<h5>Unordered</h5>
+								<ul>
+									<li>Dolor pulvinar etiam.</li>
+									<li>Sagittis adipiscing.</li>
+									<li>Felis enim feugiat.</li>
+								</ul>
+								<h5>Alternate</h5>
+								<ul class="alt">
+									<li>Dolor pulvinar etiam.</li>
+									<li>Sagittis adipiscing.</li>
+									<li>Felis enim feugiat.</li>
+								</ul>
+							</div>
+							<div class="col-6 col-12-medium">
+								<h5>Ordered</h5>
+								<ol>
+									<li>Dolor pulvinar etiam.</li>
+									<li>Etiam vel felis viverra.</li>
+									<li>Felis enim feugiat.</li>
+									<li>Dolor pulvinar etiam.</li>
+									<li>Etiam vel felis lorem.</li>
+									<li>Felis enim et feugiat.</li>
+								</ol>
+								<h5>Icons</h5>
+								<ul class="icons">
+									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+								</ul>
+							</div>
+						</div>
+						<h5>Actions</h5>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<ul class="actions">
+									<li><a href="#" class="button primary">Default</a></li>
+									<li><a href="#" class="button">Default</a></li>
+								</ul>
+								<ul class="actions small">
+									<li><a href="#" class="button primary small">Small</a></li>
+									<li><a href="#" class="button small">Small</a></li>
+								</ul>
+								<ul class="actions stacked">
+									<li><a href="#" class="button primary">Default</a></li>
+									<li><a href="#" class="button">Default</a></li>
+								</ul>
+								<ul class="actions stacked">
+									<li><a href="#" class="button primary small">Small</a></li>
+									<li><a href="#" class="button small">Small</a></li>
+								</ul>
+							</div>
+							<div class="col-6 col-12-medium">
+								<ul class="actions stacked">
+									<li><a href="#" class="button primary fit">Default</a></li>
+									<li><a href="#" class="button fit">Default</a></li>
+								</ul>
+								<ul class="actions stacked">
+									<li><a href="#" class="button primary small fit">Small</a></li>
+									<li><a href="#" class="button small fit">Small</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section>
+						<h4>Table</h4>
+						<h5>Default</h5>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Item One</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Two</td>
+										<td>Vis ac commodo adipiscing arcu aliquet.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Three</td>
+										<td> Morbi faucibus arcu accumsan lorem.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Four</td>
+										<td>Vitae integer tempus condimentum.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Five</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2"></td>
+										<td>100.00</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+
+						<h5>Alternate</h5>
+						<div class="table-wrapper">
+							<table class="alt">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Item One</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Two</td>
+										<td>Vis ac commodo adipiscing arcu aliquet.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Three</td>
+										<td> Morbi faucibus arcu accumsan lorem.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Four</td>
+										<td>Vitae integer tempus condimentum.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Five</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2"></td>
+										<td>100.00</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h4>Buttons</h4>
+						<ul class="actions">
+							<li><a href="#" class="button primary">Primary</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a href="#" class="button large">Large</a></li>
+							<li><a href="#" class="button">Default</a></li>
+							<li><a href="#" class="button small">Small</a></li>
+						</ul>
+						<ul class="actions fit">
+							<li><a href="#" class="button fit">Fit</a></li>
+							<li><a href="#" class="button primary fit">Fit</a></li>
+							<li><a href="#" class="button fit">Fit</a></li>
+						</ul>
+						<ul class="actions fit small">
+							<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+							<li><a href="#" class="button fit small">Fit + Small</a></li>
+							<li><a href="#" class="button primary fit small">Fit + Small</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+							<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+						</ul>
+						<ul class="actions">
+							<li><span class="button primary disabled">Disabled</span></li>
+							<li><span class="button disabled">Disabled</span></li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Form</h4>
+						<form method="post" action="#">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-6 col-12-xsmall">
+									<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+								</div>
+								<div class="col-6 col-12-xsmall">
+									<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+								</div>
+								<div class="col-12">
+									<select name="demo-category" id="demo-category">
+										<option value="">- Category -</option>
+										<option value="1">Manufacturing</option>
+										<option value="1">Shipping</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+									<label for="demo-priority-low">Low</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="radio" id="demo-priority-normal" name="demo-priority">
+									<label for="demo-priority-normal">Normal</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="radio" id="demo-priority-high" name="demo-priority">
+									<label for="demo-priority-high">High</label>
+								</div>
+								<div class="col-6 col-12-small">
+									<input type="checkbox" id="demo-copy" name="demo-copy">
+									<label for="demo-copy">Email me a copy</label>
+								</div>
+								<div class="col-6 col-12-small">
+									<input type="checkbox" id="demo-human" name="demo-human" checked>
+									<label for="demo-human">Not a robot</label>
+								</div>
+								<div class="col-12">
+									<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+								</div>
+								<div class="col-12">
+									<ul class="actions">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+										<li><input type="reset" value="Reset" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+
+					<section>
+						<h4>Image</h4>
+						<h5>Fit</h5>
+						<div class="box alt">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-12"><span class="image fit"><img src="images/pic06.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic04.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+								<div class="col-4"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+							</div>
+						</div>
+						<h5>Left &amp; Right</h5>
+						<p><span class="image left"><img src="images/pic05.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+						<p><span class="image right"><img src="images/pic05.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
+					</section>
+
+				</div>
+			</section>
+		-->
+
+		<!-- Footer -->
+			<section id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
+
+		<!-- Scripts -->
+			<script src="static/js/jquery.min.js"></script>
+			<script src="static/js/jquery.scrolly.min.js"></script>
+			<script src="static/js/browser.min.js"></script>
+			<script src="static/js/breakpoints.min.js"></script>
+			<script src="static/js/util.js"></script>
+			<script src="static/js/main.js"></script>
+
+	</body>
+	<script>
+
+
+		am5.ready(function() {
+
+		// Create root element
+		// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+		var root = am5.Root.new("chartdiv");
+
+
+		// Set themes
+		// https://www.amcharts.com/docs/v5/concepts/themes/
+		root.setThemes([
+		  am5themes_Animated.new(root)
+		]);
+
+
+		// Create chart
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/
+		var chart = root.container.children.push(am5xy.XYChart.new(root, {
+		  panX: false,
+		  panY: false,
+		  wheelX: "panX",
+		  wheelY: "zoomX",
+		  layout: root.verticalLayout
+		}));
+
+
+		// Add legend
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+		var legend = chart.children.push(am5.Legend.new(root, {
+		  centerX: am5.p50,
+		  x: am5.p50
+		}))
+
+
+		// Data
+		var data = [{
+		  year: "DNN",
+		  income: 71,
+		  expenses: 77
+		}, {
+		  year: "XGBoost",
+		  income: 86,
+		  expenses: 92
+		}, {
+		  year: "RF",
+		  income: 35,
+		  expenses: 45
+		}];
+
+
+		// Create axes
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+		var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+		  categoryField: "year",
+		  renderer: am5xy.AxisRendererY.new(root, {
+			inversed: true,
+			cellStartLocation: 0.1,
+			cellEndLocation: 0.9
+		  })
+		}));
+
+		yAxis.data.setAll(data);
+
+		var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+		  renderer: am5xy.AxisRendererX.new(root, {}),
+		  min: 0
+		}));
+
+
+		// Add series
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+		function createSeries(field, name) {
+		  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+			name: name,
+			xAxis: xAxis,
+			yAxis: yAxis,
+			valueXField: field,
+			categoryYField: "year",
+			sequencedInterpolation: true,
+			tooltip: am5.Tooltip.new(root, {
+			  pointerOrientation: "horizontal",
+			  labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+			})
+		  }));
+
+		  series.columns.template.setAll({
+			height: am5.p100
+		  });
+
+
+		  series.bullets.push(function() {
+			return am5.Bullet.new(root, {
+			  locationX: 1,
+			  locationY: 0.5,
+			  sprite: am5.Label.new(root, {
+				centerY: am5.p50,
+				text: "{valueX}",
+				populateText: true
+			  })
+			});
+		  });
+
+		  series.bullets.push(function() {
+			return am5.Bullet.new(root, {
+			  locationX: 1,
+			  locationY: 0.5,
+			  sprite: am5.Label.new(root, {
+				centerX: am5.p100,
+				centerY: am5.p50,
+				text: "{name}",
+				fill: am5.color(0xffffff),
+				populateText: true
+			  })
+			});
+		  });
+
+		  series.data.setAll(data);
+		  series.appear();
+
+		  return series;
+		}
+
+		createSeries("income", "初步預測%");
+		createSeries("expenses", "特徵工程後%");
+
+
+		// Add legend
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+		var legend = chart.children.push(am5.Legend.new(root, {
+		  centerX: am5.p50,
+		  x: am5.p50
+		}));
+
+		legend.data.setAll(chart.series.values);
+
+
+		// Add cursor
+		// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+		var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+		  behavior: "zoomY"
+		}));
+		cursor.lineY.set("forceHidden", true);
+		cursor.lineX.set("forceHidden", true);
+
+
+		// Make stuff animate on load
+		// https://www.amcharts.com/docs/v5/concepts/animations/
+		chart.appear(1000, 100);
+
+		}); // end am5.ready()
+		</script>
+		<script>
+			am5.ready(function() {
+			
+			// Create root element
+			// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+			var root = am5.Root.new("chart2div");
+			
+			
+			// Set themes
+			// https://www.amcharts.com/docs/v5/concepts/themes/
+			root.setThemes([
+			  am5themes_Animated.new(root)
+			]);
+			
+			
+			// Create chart
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/
+			var chart = root.container.children.push(am5xy.XYChart.new(root, {
+			  panX: false,
+			  panY: false,
+			  wheelX: "panX",
+			  wheelY: "zoomX",
+			  layout: root.verticalLayout
+			}));
+			
+			
+			// Add legend
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+			var legend = chart.children.push(am5.Legend.new(root, {
+			  centerX: am5.p50,
+			  x: am5.p50
+			}))
+			
+			
+			// Data
+			var data = [{
+			  year: "DNN",
+			  income: 62,
+			  expenses: 67
+			}, {
+			  year: "XGBoost",
+			  income: 69,
+			  expenses: 75
+			}, {
+			  year: "Extra_Trees",
+			  income: 83,
+			  expenses: 84
+			}];
+			
+			
+			// Create axes
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+			var yAxis = chart.yAxes.push(am5xy.CategoryAxis.new(root, {
+			  categoryField: "year",
+			  renderer: am5xy.AxisRendererY.new(root, {
+				inversed: true,
+				cellStartLocation: 0.1,
+				cellEndLocation: 0.9
+			  })
+			}));
+			
+			yAxis.data.setAll(data);
+			
+			var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+			  renderer: am5xy.AxisRendererX.new(root, {}),
+			  min: 0
+			}));
+			
+			
+			// Add series
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+			function createSeries(field, name) {
+			  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+				name: name,
+				xAxis: xAxis,
+				yAxis: yAxis,
+				valueXField: field,
+				categoryYField: "year",
+				sequencedInterpolation: true,
+				tooltip: am5.Tooltip.new(root, {
+				  pointerOrientation: "horizontal",
+				  labelText: "[bold]{name}[/]\n{categoryY}: {valueX}"
+				})
+			  }));
+			
+			  series.columns.template.setAll({
+				height: am5.p100
+			  });
+			
+			
+			  series.bullets.push(function() {
+				return am5.Bullet.new(root, {
+				  locationX: 1,
+				  locationY: 0.5,
+				  sprite: am5.Label.new(root, {
+					centerY: am5.p50,
+					text: "{valueX}",
+					populateText: true
+				  })
+				});
+			  });
+			
+			  series.bullets.push(function() {
+				return am5.Bullet.new(root, {
+				  locationX: 1,
+				  locationY: 0.5,
+				  sprite: am5.Label.new(root, {
+					centerX: am5.p100,
+					centerY: am5.p50,
+					text: "{name}",
+					fill: am5.color(0xffffff),
+					populateText: true
+				  })
+				});
+			  });
+			
+			  series.data.setAll(data);
+			  series.appear();
+			
+			  return series;
+			}
+			
+			createSeries("income", "初步預測%");
+			createSeries("expenses", "特徵選取%");
+			
+			
+			// Add legend
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+			var legend = chart.children.push(am5.Legend.new(root, {
+			  centerX: am5.p50,
+			  x: am5.p50
+			}));
+			
+			legend.data.setAll(chart.series.values);
+			
+			
+			// Add cursor
+			// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+			var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+			  behavior: "zoomY"
+			}));
+			cursor.lineY.set("forceHidden", true);
+			cursor.lineX.set("forceHidden", true);
+			
+			
+			// Make stuff animate on load
+			// https://www.amcharts.com/docs/v5/concepts/animations/
+			chart.appear(1000, 100);
+			
+			}); // end am5.ready()
+			</script>
+
+			<!-- Chart code -->
+<script>
+	am5.ready(function() {
+
+	// Create root element
+	// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+	var root = am5.Root.new("chartdiv_pie");
+
+
+	// Set themes
+	// https://www.amcharts.com/docs/v5/concepts/themes/
+	root.setThemes([
+	  am5themes_Animated.new(root)
+	]);
+
+
+	// Create chart
+	// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+	var chart = root.container.children.push(am5percent.PieChart.new(root, {
+	  layout: root.verticalLayout,
+	  innerRadius: am5.percent(50)
+	}));
+
+
+	// Create series
+	// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+	var series = chart.series.push(am5percent.PieSeries.new(root, {
+	  valueField: "value",
+	  categoryField: "category",
+	  alignLabels: false
+	}));
+
+	series.labels.template.setAll({
+	  textType: "circular",
+	  centerX: 0,
+	  centerY: 0
+	});
+
+
+	// Set data
+	// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+	series.data.setAll([
+	  { value: 42, category: "化石燃料" },
+	  { value: 1, category: "其他" },
+	  { value: 21, category: "核能" },
+	  { value: 6, category: "太陽能" },
+	  { value: 20, category: "風力" },
+	  { value: 10, category: "水力" },
+
+
+	]);
+
+
+	// Create legend
+	// https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+	var legend = chart.children.push(am5.Legend.new(root, {
+	  centerX: am5.percent(50),
+	  x: am5.percent(50),
+	  marginTop: 15,
+	  marginBottom: 15,
+	}));
+
+	legend.data.setAll(series.dataItems);
+
+
+	// Play initial series animation
+	// https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+	series.appear(1000, 100);
+
+	}); // end am5.ready()
+	</script>
+<!-- Chart code -->
+<script>
+	am4core.ready(function() {
+
+	// Themes begin
+	am4core.useTheme(am4themes_animated);
+	// Themes end
+
+	var chart = am4core.create("chartdiv_week", am4charts.XYChart);
+	chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+	chart.data = [
+	  {
+		country: "0h",
+		visits: 26288
+	  },
+	  {
+		country: "1h",
+		visits: 24592
+	  },
+	  {
+		country: "2h",
+		visits: 23465
+	  },
+	  {
+		country: "3h",
+		visits: 22919
+	  },
+	  {
+		country: "4h",
+		visits: 22709
+	  },
+	  {
+		country: "5h",
+		visits: 23006
+	  },
+	  {
+		country: "6h",
+		visits: 24570
+	  },
+	  {
+		country: "7h",
+		visits: 26970
+	  },
+	  {
+		country: "8h",
+		visits: 28852
+	  },
+	  {
+		country: "9h",
+		visits: 30438
+	  },
+	  {
+		country: "10h",
+		visits: 31495
+	  },
+	  {
+		country: "11h",
+		visits: 31898
+	  }
+	  ,
+	  {
+		country: "12h",
+		visits: 32075
+	  },
+	  {
+		country: "13h",
+		visits: 32181
+	  },
+	  {
+		country: "14h",
+		visits: 31408
+	  },
+	  {
+		country: "15h",
+		visits: 30623
+	  },
+	  {
+		country: "16h",
+		visits: 30287
+	  },
+	  {
+		country: "17h",
+		visits: 30309
+	  },
+	  {
+		country: "18h",
+		visits: 30731
+	  },
+	  {
+		country: "19h",
+		visits: 31323
+	  },
+	  {
+		country: "20h",
+		visits: 31947
+	  },
+	  {
+		country: "21h",
+		visits: 32105
+	  },
+	  {
+		country: "22h",
+		visits: 30463
+	  },
+	  {
+		country: "23h",
+		visits: 28118
+	  }
+	];
+
+	var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+	categoryAxis.renderer.grid.template.location = 0;
+	categoryAxis.dataFields.category = "country";
+	categoryAxis.renderer.minGridDistance = 40;
+	categoryAxis.fontSize = 11;
+
+	var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+	valueAxis.min = 5000;
+	valueAxis.max = 40000;
+	valueAxis.strictMinMax = true;
+	valueAxis.renderer.minGridDistance = 30;
+	// axis break
+	var axisBreak = valueAxis.axisBreaks.create();
+	axisBreak.startValue = 0;
+	axisBreak.endValue = 0;
+	//axisBreak.breakSize = 0.005;
+
+	// fixed axis break
+	var d = (axisBreak.endValue - axisBreak.startValue) / (valueAxis.max - valueAxis.min);
+	axisBreak.breakSize = 0.05 * (1 - d) / d; // 0.05 means that the break will take 5% of the total value axis height
+
+	// make break expand on hover
+	var hoverState = axisBreak.states.create("hover");
+	hoverState.properties.breakSize = 1;
+	hoverState.properties.opacity = 0.1;
+	hoverState.transitionDuration = 1500;
+
+	axisBreak.defaultState.transitionDuration = 1000;
+	/*
+	// this is exactly the same, but with events
+	axisBreak.events.on("over", function() {
+	  axisBreak.animate(
+		[{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
+		1500,
+		am4core.ease.sinOut
+	  );
+	});
+	axisBreak.events.on("out", function() {
+	  axisBreak.animate(
+		[{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
+		1000,
+		am4core.ease.quadOut
+	  );
+	});*/
+
+	var series = chart.series.push(new am4charts.ColumnSeries());
+	series.dataFields.categoryX = "country";
+	series.dataFields.valueY = "visits";
+	series.columns.template.tooltipText = "{valueY.value}";
+	series.columns.template.tooltipY = 0;
+	series.columns.template.strokeOpacity = 0;
+
+	// as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+	series.columns.template.adapter.add("fill", function(fill, target) {
+	  return chart.colors.getIndex(target.dataItem.index);
+	});
+
+	}); // end am4core.ready()
+	</script>
+	<script>
+		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+		  $(function() {
+		$('#ppred').bind('click', function() {
+
+		  $.getJSON($SCRIPT_ROOT + '/ppred', {
+			coal: $('select[name="coal"]').val(),
+			gas: $('select[name="gas"]').val(),
+			u235: $('select[name="u235"]').val(),
+			oil: $('select[name="oil"]').val(),
+			bio: $('select[name="bio"]').val(),
+			weather: $('select[name="weather"]').val(),
+			hours: $('select[name="hours"]').val()
+
+		  }, function(data) {
+
+			$("#result").text(data.result);
+			var aa = data.result*450;
+			$("#load").text(data.load);
+		  });
+		  return false;
+		});
+	  });
+
+	</script>
+</html>
