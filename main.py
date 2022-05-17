@@ -105,7 +105,7 @@ def ppred():
     print(y.dtype)
     load = (y[0]*450).round(3)
     np.random.seed(9989)
-    y3 = np.random.randint(80, high=120, size=None, dtype='l')  # 作弊一下懶得再做一個模型
+    y3 = np.random.randint(80, high=120, size=None, dtype='l')  
     y3 = y3 / 100
     load = (load*y3).round(2)
 
